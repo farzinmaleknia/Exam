@@ -38,7 +38,7 @@ const App: React.FC = () => {
 
   const questionRenderer = () => {
     if(questions.length > 5){
-      return <Questions questions ={questions}/>
+      return <Questions questions ={questions} score={score}/>
     }
   }
 

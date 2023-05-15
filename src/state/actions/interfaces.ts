@@ -1,9 +1,5 @@
 import { PUT_SCORE } from "./actionTypes";
 
-export interface IAnswer {
-    answers: {[key: string]: string}[],
-}
-
 export interface IQuestion {
     id: number,
     question: string,
@@ -13,6 +9,11 @@ export interface IQuestion {
 
 export interface IAnswer {
     answers: {[key: string]: string}[],
+}
+
+export interface IUser {
+    firstName: string;
+    lastName: string;
 }
 
 interface PutQuestion {

@@ -1,29 +1,22 @@
 import React from "react";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, InjectedFormProps } from "redux-form";
 
 import { IQuestion, IAnswer } from "../state/actions/interfaces";
 
-const Questions: React.FC<{questions: IQuestion[], form: any}> = (props) => {
-    
-    const ali = {"ali": "2", "badr": "1"}
+import { IUser } from "../state/actions/interfaces";
 
-    const answerRenderer = (answers:IAnswer ) => {
-        return Object.entries(answers).map(([key, value]) => {
-            if(value !== null){ 
-                return (
-                    <div className="form-check" key={key}>
-                        <input type="radio" className="form-check-input" id="radio1" name="optradio" value="option1" />{value}
-                        <label className="form-check-label" htmlFor="radio1"></label>
-                    </div>
-                );
-            }
-        });
+interface IProps {
+    questions: IQuestion[];
+    score : number;
+}
 
-    } 
-    answerRenderer(props.questions[0].answers)
+const Questions: React.FC<InjectedFormProps<IUser, IProps> & IProps> = (props) => {
+
     const questionRenderer = (questions: IQuestion[]) => {
         let num : number = 0;
+        console.log(props);
         return questions.map((question, j) => {
+
             return ( 
                 <div className="card" key={question.id} style={{display: `${num == j? "block":"none"}`}}>
                     <div className="card-body " >
@@ -33,7 +26,7 @@ const Questions: React.FC<{questions: IQuestion[], form: any}> = (props) => {
                             if(value !== null){ 
                                 return (
                                     <div className="form-check" key={key}>
-                                        <input type="radio" className="form-check-input" id="radio1" name="optradio" value="option1" />{value}
+                                        <Field component="input" type="radio" className="form-check-input" name={key} value={value} />{value}
                                         <label className="form-check-label" htmlFor="radio1"></label>
                                     </div>
                                 );
@@ -45,9 +38,7 @@ const Questions: React.FC<{questions: IQuestion[], form: any}> = (props) => {
                 </div>
             );
         })
-
     }
-
 
     return (
         <form>
@@ -56,4 +47,4 @@ const Questions: React.FC<{questions: IQuestion[], form: any}> = (props) => {
     );
 };
 
-export default reduxForm({form: "form"})(Questions);
+export default reduxForm<IUser, IProps>({form: "form"})(Questions);
