@@ -1,13 +1,13 @@
 import { combineReducers } from "redux";
 import { questionsReducer } from "./questionsReducer";
-import { scoresReducer } from "./scoresReducer";
+import { selectedAnswerReducer } from "./selectedAnswerReducer";
 import { reducer as formReducer } from "redux-form";
 
 
 
 export const reducers = combineReducers({
     questions: questionsReducer,
-    score: scoresReducer,
+    selectedAnswer: selectedAnswerReducer,
     form: formReducer
 })
 

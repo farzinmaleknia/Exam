@@ -1,6 +1,6 @@
 import { Dispatch } from "redux";
-import { IQuestion } from "./interfaces";
-import { PUT_QUESTION } from "./actionTypes";
+import { IAnswer, IQuestion } from "./interfaces";
+import { PUT_QUESTION, PUT_SELECTEDANSWER } from "./actionTypes";
 
 export const putQuestion = (question: IQuestion) => (dispatch: Dispatch) => {
     dispatch({
@@ -14,3 +14,11 @@ export const putScore = () => (dispatch: Dispatch) => {
         type: PUT_QUESTION,
     })
 };
+
+export const putSelcetedAnswer = (answer: IAnswer) => (dispatch: Dispatch) => {
+    dispatch({
+        type: PUT_SELECTEDANSWER,
+        payload: answer
+    })
+};
+

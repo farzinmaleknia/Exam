@@ -1,29 +1,39 @@
-import { PUT_SCORE } from "./actionTypes";
-
 export interface IQuestion {
     id: number,
     question: string,
-    answers: IAnswer,
+    answers: IAnswers,
     correct_answer: string
 }
 
 export interface IAnswer {
-    answers: {[key: string]: string}[],
+    answer : {[key: string]: string};
 }
 
-export interface IUser {
-    firstName: string;
-    lastName: string;
+export interface IAnswers {
+    answer : {[key: string]: string}[];
 }
 
-interface PutQuestion {
+export interface IAnsweredQuestion {
+    question: IQuestion;
+    correctAnswer: IAnswer;
+    selectedAnswer: IAnswer;
+}
+
+export interface IResault {
+    answers: IAnsweredQuestion[];
+    score: number;
+}
+
+type PutQuestion = {
     type: "PUT_QUESTION",
     payload: IQuestion
 }
 
-interface PutScore {
-    type: "PUT_SCORE",
+type PutSelcetedAnswer = {
+    type: "PUT_SELECTEDANSWER",
+    payload: IAnswer
 }
 
-export type Action = PutQuestion | PutScore;
+
+export type Action = PutQuestion | PutSelcetedAnswer;
 

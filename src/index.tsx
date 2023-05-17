@@ -12,9 +12,10 @@ const root = createRoot(document.querySelector('#root') as HTMLElement);
 
 const store = createStore(reducers, {}, applyMiddleware(thunk))
 
-
 root.render(
     <Provider store={store} >
+        <>
         <App />
+        </>
     </Provider >
 )

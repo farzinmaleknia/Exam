@@ -5,15 +5,14 @@ import {instance as axios} from "../apis/axios";
 import { State } from "../state/reducers";
 import { actionCreators } from "../state";
 import Questions from "./Questions";
-import { IQuestion } from "../state/actions/interfaces";
+import { IAnswer } from "../state/actions/interfaces";
 
 
 const App: React.FC = () => {
 
-  const {questions, score} = useSelector((state: State) => state = state)
+  const {questions, selectedAnswer} = useSelector((state: State) => state = state)
   const dispatch = useDispatch();
-  const {putQuestion, putScore} = bindActionCreators(actionCreators, dispatch);
-
+  const {putQuestion, putSelcetedAnswer} = bindActionCreators(actionCreators, dispatch);
 
   const fetchQuestions = async () => {
     if(questions.length < 5){
@@ -30,20 +29,22 @@ const App: React.FC = () => {
     }
   };
 
-  
+  const onFormSubmit = (values: IAnswer) => {
+    console.log(values);
+    putSelcetedAnswer(values);
+    console.log(selectedAnswer);
+  };
+
   fetchQuestions();
-
-
-
 
   const questionRenderer = () => {
     if(questions.length > 5){
-      return <Questions questions ={questions} score={score}/>
+      return <Questions questions={questions} onSubmit={onFormSubmit}/>
     }
   }
-
+  console.log(selectedAnswer);
   return (
-    <div>
+    <div className="container">
       {questionRenderer()}
     </div>
   );
