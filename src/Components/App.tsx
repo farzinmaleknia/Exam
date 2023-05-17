@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { bindActionCreators } from "redux";
 import { useSelector, useDispatch } from "react-redux";
 import {instance as axios} from "../apis/axios";
@@ -10,7 +10,7 @@ import { IAnswer } from "../state/actions/interfaces";
 
 const App: React.FC = () => {
 
-  const {questions, selectedAnswer} = useSelector((state: State) => state = state)
+  const {questions} = useSelector((state: State) => state = state)
   const dispatch = useDispatch();
   const {putQuestion, putSelcetedAnswer} = bindActionCreators(actionCreators, dispatch);
 
@@ -30,9 +30,7 @@ const App: React.FC = () => {
   };
 
   const onFormSubmit = (values: IAnswer) => {
-    console.log(values);
     putSelcetedAnswer(values);
-    console.log(selectedAnswer);
   };
 
   fetchQuestions();
@@ -42,7 +40,6 @@ const App: React.FC = () => {
       return <Questions questions={questions} onSubmit={onFormSubmit}/>
     }
   }
-  console.log(selectedAnswer);
   return (
     <div className="container">
       {questionRenderer()}
