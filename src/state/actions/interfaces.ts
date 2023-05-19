@@ -6,7 +6,7 @@ export interface IQuestion {
 }
 
 export interface IAnswer {
-    answer : {[key: string]: string};
+    answer : string;
 }
 
 export interface IAnswers {
@@ -14,8 +14,9 @@ export interface IAnswers {
 }
 
 export interface IAnsweredQuestion {
-    question: IQuestion;
-    correctAnswer: IAnswer;
+    question: string;
+    questionNumber: number;
+    correctAnswer: string;
     selectedAnswer: IAnswer;
 }
 
@@ -34,6 +35,15 @@ type PutSelcetedAnswer = {
     payload: IAnswer
 }
 
+type PutAnswer = {
+  type: "PUT_ANSWER";
+  payload: IResault;
+};
 
-export type Action = PutQuestion | PutSelcetedAnswer;
+type PutScore = {
+  type: "PUT_SCORE";
+};
+
+
+export type Action = PutQuestion | PutSelcetedAnswer | PutAnswer | PutScore;
 

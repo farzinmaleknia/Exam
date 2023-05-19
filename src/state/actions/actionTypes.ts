@@ -1,3 +1,4 @@
 export const PUT_QUESTION = "PUT_QUESTION";
 export const PUT_SCORE = "PUT_SCORE";
 export const PUT_SELECTEDANSWER = "PUT_SELECTEDANSWER";
+export const PUT_ANSWER = "PUT_ANSWER";
