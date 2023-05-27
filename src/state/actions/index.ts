@@ -9,7 +9,7 @@ export const putQuestion = (question: IQuestion) => (dispatch: Dispatch) => {
     })
 };
 
-export const putSelcetedAnswer = (answer: string) => (dispatch: Dispatch) => {
+export const putSelcetedAnswer = (answer: string[]) => (dispatch: Dispatch) => {
     dispatch({
         type: PUT_SELECTEDANSWER,
         payload: answer
@@ -17,6 +17,7 @@ export const putSelcetedAnswer = (answer: string) => (dispatch: Dispatch) => {
 };
 
 export const putAnswer = (answers: IAnsweredQuestion) => (dispatch: Dispatch) => {
+    console.log('action')
     dispatch({
         type: PUT_ANSWER,
         payload: answers

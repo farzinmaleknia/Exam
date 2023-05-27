@@ -11,12 +11,12 @@ import { selectedAnswerReducer } from "../state/reducers/selectedAnswerReducer";
 
 const App: React.FC = () => {
 
-  const {questions} = useSelector((state: State) => state)
+  const state = useSelector((state: State) => state)
   const dispatch = useDispatch();
   const {putQuestion, putSelcetedAnswer} = bindActionCreators(actionCreators, dispatch);
 
   const fetchQuestions = async () => {
-    if(questions.length < 5){
+    if(state.questions.length < 5){
       const res = await axios.get("/v1/questions");
 
       res.data.map((question: any) => {
@@ -31,17 +31,17 @@ const App: React.FC = () => {
   };
 
   const onFormSubmit = (values: IAnswer) => {
-    console.log(values);
     const answerArray: string[] = values.answer.split(',');
-    const answerKey = answerArray[0];
-    putSelcetedAnswer(answerKey[0]);
+    putSelcetedAnswer(answerArray);
   };
+  
+  console.log(state);
 
   fetchQuestions();
 
   const questionRenderer = () => {
-    if(questions.length > 5){
-      return <Questions questions={questions} onSubmit={onFormSubmit}/>
+    if(state.questions.length > 5){
+      return <Questions questions={state.questions} onSubmit={onFormSubmit}/>
     }
   }
   return (

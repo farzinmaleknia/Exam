@@ -9,6 +9,9 @@ export interface IAnswer {
     answer : string;
 }
 
+export interface IAnswersssss {
+    answer : string[];
+}
 export interface IAnswers {
     answer : {[key: string]: string}[];
 }
@@ -17,7 +20,7 @@ export interface IAnsweredQuestion {
     question: string;
     questionNumber: number;
     correctAnswer: string;
-    selectedAnswer: IAnswer;
+    selectedAnswer: string;
 }
 
 export interface IResault {

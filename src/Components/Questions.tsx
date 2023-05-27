@@ -21,10 +21,11 @@ const Questions: React.FC<InjectedFormProps<IAnswer, IProps> & IProps> = (
 ) => {
   const [questionNumber, setQuestionNumber] = useState(0);
   const [questionShow, setQuestionShow] = useState(props.questions[0]);
-  const { selectedAnswer , resault } = useSelector((state: State) => state);
+  const state = useSelector((state: State) => state);
   const dispatch = useDispatch();
   const { putAnswer, putScore } = bindActionCreators(actionCreators, dispatch);
-
+  const selectedAnswer: string = state.selectedAnswer;
+  const answeredQuestion: IAnsweredQuestion[] = state.answeredQuestion;
 
   useEffect(() => {
     if (selectedAnswer !== "No") {
@@ -32,16 +33,26 @@ const Questions: React.FC<InjectedFormProps<IAnswer, IProps> & IProps> = (
         question: questionShow.question,
         questionNumber: questionNumber ,
         correctAnswer: questionShow.correct_answer,
-        selectedAnswer: selectedAnswer,
-      });
+        selectedAnswer: selectedAnswer[0],
+      })
+
+      if (questionShow.correct_answer === selectedAnswer[0]) {
+        console.log("yes")
+        putScore();
+      }
+    } else {
+      console.log(state.questions)
     }
-    console.log(resault);
+
 
     setQuestionNumber(questionNumber + 1);
     setQuestionShow(props.questions[questionNumber]);
+    
   }, [selectedAnswer]);
 
+
   const questionRenderer = () => {
+  
     return (
       <form onSubmit={props.handleSubmit}>
         <div className="card" key={questionShow.id}>
