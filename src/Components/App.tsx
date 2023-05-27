@@ -6,20 +6,21 @@ import { State } from "../state/reducers";
 import { actionCreators } from "../state";
 import Questions from "./Questions";
 import { IAnswer } from "../state/actions/interfaces";
+import { selectedAnswerReducer } from "../state/reducers/selectedAnswerReducer";
 
 
 const App: React.FC = () => {
 
-  const {questions} = useSelector((state: State) => state = state)
+  const state = useSelector((state: State) => state)
   const dispatch = useDispatch();
   const {putQuestion, putSelcetedAnswer} = bindActionCreators(actionCreators, dispatch);
 
   const fetchQuestions = async () => {
-    if(questions.length < 5){
+    if(state.questions.length < 5){
       const res = await axios.get("/v1/questions");
 
       res.data.map((question: any) => {
-        putQuestion({
+        return putQuestion({
           id: question.id,
           question: question.question,
           answers: question.answers,
@@ -30,14 +31,17 @@ const App: React.FC = () => {
   };
 
   const onFormSubmit = (values: IAnswer) => {
-    putSelcetedAnswer(values);
+    const answerArray: string[] = values.answer.split(',');
+    putSelcetedAnswer(answerArray);
   };
+  
+  console.log(state);
 
   fetchQuestions();
 
   const questionRenderer = () => {
-    if(questions.length > 5){
-      return <Questions questions={questions} onSubmit={onFormSubmit}/>
+    if(state.questions.length > 5){
+      return <Questions questions={state.questions} onSubmit={onFormSubmit}/>
     }
   }
   return (
