@@ -37,11 +37,8 @@ const Questions: React.FC<InjectedFormProps<IAnswer, IProps> & IProps> = (
       })
 
       if (questionShow.correct_answer === selectedAnswer[0]) {
-        console.log("yes")
         putScore();
       }
-    } else {
-      console.log(state.questions)
     }
 
 
