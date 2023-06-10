@@ -55,7 +55,7 @@ const Questions: React.FC<InjectedFormProps<IAnswer, IProps> & IProps> = (
         <div className="card" key={questionShow.id}>
           <div className="card-body">
             <div className="d-flex justify-content-between">
-              <span className="card-text">{questionShow.question}</span>
+              <span className="card-text bold-font">{questionShow.question}</span>
               <span className="card-text mx-2 h4">{questionNumber}</span>
             </div>
             {Object.entries(questionShow.answers).map(([key, value]) => {

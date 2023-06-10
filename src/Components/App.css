@@ -1,0 +1,11 @@
+*{
+    font-family: 'Roboto Mono', monospace !important; 
+}
+
+.regular-font{
+    font-family: 'Roboto Mono', monospace
+}
+
+.bold-font{
+    font-family: 'Roboto Mono', cursive !important;
+}

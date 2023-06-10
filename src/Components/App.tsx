@@ -7,6 +7,7 @@ import Questions from "./Questions";
 import Header from "./Header";
 import { State } from "../state/reducers";
 import { IAnswer } from "../state/actions/interfaces";
+import "./App.css";
 
 
 const App: React.FC = () => {
