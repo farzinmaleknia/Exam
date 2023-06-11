@@ -2,10 +2,15 @@
     font-family: 'Roboto Mono', monospace !important; 
 }
 
-.regular-font{
-    font-family: 'Roboto Mono', monospace
+.bold-font{
+    font-weight: bolder;
+    font-size: 18px;
 }
 
-.bold-font{
-    font-family: 'Roboto Mono', cursive !important;
+.center {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
 }

@@ -3,6 +3,7 @@ import { Field, reduxForm, InjectedFormProps } from "redux-form";
 import { bindActionCreators } from "redux";
 import { useSelector, useDispatch } from "react-redux";
 
+import "./App.css"
 import { actionCreators } from "../state";
 import { State } from "../state/reducers";
 import {
@@ -41,7 +42,6 @@ const Questions: React.FC<InjectedFormProps<IAnswer, IProps> & IProps> = (
       }
     }
 
-
     setQuestionNumber(questionNumber + 1);
     setQuestionShow(props.questions[questionNumber]);
     
@@ -55,9 +55,9 @@ const Questions: React.FC<InjectedFormProps<IAnswer, IProps> & IProps> = (
         <div className="card" key={questionShow.id}>
           <div className="card-body">
             <div className="d-flex justify-content-between">
-              <span className="card-text bold-font">{questionShow.question}</span>
-              <span className="card-text mx-2 h4">{questionNumber}</span>
+              <span className="card-text bold-font">{questionNumber}- {questionShow.question}</span>
             </div>
+            <br/>
             {Object.entries(questionShow.answers).map(([key, value]) => {
               if (value !== null) {
                 return (
@@ -78,8 +78,9 @@ const Questions: React.FC<InjectedFormProps<IAnswer, IProps> & IProps> = (
                 return null;
               }
             })}
+            <br/>
             <div className="d-flex justify-content-end">
-              <button className="btn btn-success" type="submit">
+              <button className="btn btn-success bold-font" type="submit">
                 Submit
               </button>
             </div>
@@ -89,7 +90,7 @@ const Questions: React.FC<InjectedFormProps<IAnswer, IProps> & IProps> = (
     );
   };
 
-  return <div className="m-5 px-5">{questionRenderer()}</div>;
+  return <div className="center">{questionRenderer()}</div>;
 };
 
 export default reduxForm<IAnswer, IProps>({ form: "questionForm" })(Questions);
