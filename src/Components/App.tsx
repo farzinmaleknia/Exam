@@ -1,16 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
 import { bindActionCreators } from "redux";
 import { useSelector, useDispatch } from "react-redux";
 import {instance as axios} from "../apis/axios";
-import { State } from "../state/reducers";
 import { actionCreators } from "../state";
 import Questions from "./Questions";
+import Header from "./Header";
+import { State } from "../state/reducers";
 import { IAnswer } from "../state/actions/interfaces";
-import { selectedAnswerReducer } from "../state/reducers/selectedAnswerReducer";
+import "./App.css";
 
 
 const App: React.FC = () => {
-
+  const [emptyAnswerNum, setEmptyAnswerNum] = useState(1);
   const state = useSelector((state: State) => state)
   const dispatch = useDispatch();
   const {putQuestion, putSelcetedAnswer} = bindActionCreators(actionCreators, dispatch);
@@ -31,8 +32,13 @@ const App: React.FC = () => {
   };
 
   const onFormSubmit = (values: IAnswer) => {
-    const answerArray: string[] = values.answer.split(',');
-    putSelcetedAnswer(answerArray);
+    if(values.answer != null){
+      const answerArray: string[] = values.answer.split(',');
+      putSelcetedAnswer(answerArray);
+    } else {
+      putSelcetedAnswer([`${emptyAnswerNum} blanc answer`]);
+      setEmptyAnswerNum(emptyAnswerNum + 1)
+    }
   };
   
   console.log(state);
@@ -46,6 +52,7 @@ const App: React.FC = () => {
   }
   return (
     <div className="container">
+      <Header />
       {questionRenderer()}
     </div>
   );

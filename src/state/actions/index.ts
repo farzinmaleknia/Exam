@@ -17,7 +17,6 @@ export const putSelcetedAnswer = (answer: string[]) => (dispatch: Dispatch) => {
 };
 
 export const putAnswer = (answers: IAnsweredQuestion) => (dispatch: Dispatch) => {
-    console.log('action')
     dispatch({
         type: PUT_ANSWER,
         payload: answers

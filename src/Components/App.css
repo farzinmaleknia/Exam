@@ -1,0 +1,16 @@
+*{
+    font-family: 'Roboto Mono', monospace !important; 
+}
+
+.bold-font{
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+.center {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+}
