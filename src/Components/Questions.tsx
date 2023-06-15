@@ -3,15 +3,14 @@ import { Field, reduxForm, InjectedFormProps } from "redux-form";
 import { bindActionCreators } from "redux";
 import { useSelector, useDispatch } from "react-redux";
 
-import "./App.css"
-import { actionCreators } from "../state";
-import { State } from "../state/reducers";
+import "../Assets/Styles/App.css";
+import { actionCreators } from "../Services";
+import { State } from "../Services/reducers";
 import {
   IQuestion,
   IAnswer,
   IAnsweredQuestion,
-  IResault,
-} from "../state/actions/interfaces";
+} from "../Services/actions/interfaces";
 
 interface IProps {
   questions: IQuestion[];
@@ -26,16 +25,15 @@ const Questions: React.FC<InjectedFormProps<IAnswer, IProps> & IProps> = (
   const dispatch = useDispatch();
   const { putAnswer, putScore } = bindActionCreators(actionCreators, dispatch);
   const selectedAnswer: string = state.selectedAnswer;
-  const answeredQuestion: IAnsweredQuestion[] = state.answeredQuestion;
-
+  
   useEffect(() => {
     if (selectedAnswer !== "No") {
       putAnswer({
         question: questionShow.question,
-        questionNumber: questionNumber ,
+        questionNumber: questionNumber,
         correctAnswer: questionShow.correct_answer,
         selectedAnswer: selectedAnswer[0],
-      })
+      });
 
       if (questionShow.correct_answer === selectedAnswer[0]) {
         putScore();
@@ -44,20 +42,19 @@ const Questions: React.FC<InjectedFormProps<IAnswer, IProps> & IProps> = (
 
     setQuestionNumber(questionNumber + 1);
     setQuestionShow(props.questions[questionNumber]);
-    
   }, [selectedAnswer]);
 
-
   const questionRenderer = () => {
-  
     return (
       <form onSubmit={props.handleSubmit}>
         <div className="card" key={questionShow.id}>
           <div className="card-body">
             <div className="d-flex justify-content-between">
-              <span className="card-text bold-font">{questionNumber}- {questionShow.question}</span>
+              <span className="card-text bold-font">
+                {questionNumber}- {questionShow.question}
+              </span>
             </div>
-            <br/>
+            <br />
             {Object.entries(questionShow.answers).map(([key, value]) => {
               if (value !== null) {
                 return (
@@ -78,7 +75,7 @@ const Questions: React.FC<InjectedFormProps<IAnswer, IProps> & IProps> = (
                 return null;
               }
             })}
-            <br/>
+            <br />
             <div className="d-flex justify-content-end">
               <button className="btn btn-success bold-font" type="submit">
                 Submit
