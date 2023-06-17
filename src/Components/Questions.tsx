@@ -3,7 +3,7 @@ import { Field, reduxForm, InjectedFormProps } from "redux-form";
 import { bindActionCreators } from "redux";
 import { useSelector, useDispatch } from "react-redux";
 
-import "../Assets/Styles/App.css";
+import "../Assets/Styles/Questions.css";
 import { actionCreators } from "../Services";
 import { State } from "../Services/reducers";
 import {
@@ -87,7 +87,7 @@ const Questions: React.FC<InjectedFormProps<IAnswer, IProps> & IProps> = (
     );
   };
 
-  return <div className="center">{questionRenderer()}</div>;
+  return <div id="questions-div">{questionRenderer()}</div>;
 };
 
 export default reduxForm<IAnswer, IProps>({ form: "questionForm" })(Questions);
