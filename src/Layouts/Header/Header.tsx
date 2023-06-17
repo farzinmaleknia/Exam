@@ -10,7 +10,7 @@ const Header: React.FC = () => {
     <Box>
       <AppBar sx={{ bgcolor: "black" }}>
         <Toolbar>
-          <Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>
+          <Typography component="div" sx={{ flexGrow: 1, fontSize: "32px" }}>
             Exam Hall
           </Typography>
           <Button color="inherit" sx={{ fontSize: 20 }}>
